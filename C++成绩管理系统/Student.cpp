@@ -1,33 +1,36 @@
-#include "Student.h"
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<Windows.h>
+#include<string>
+#include<vector>
+#include "Student.h"
 using namespace std;
-Student::Student(double score[10], double sum)
+Student::Student()
 {
-	for (int i = 1; i <= 10; i++)
-	{
-		this->score[i] = score[i];
-	}
-	this->sum = sum;
+	score_.resize(10);
 }
-Student::Student(long long id, char name[20], char term[20], char sex[5], double score[10], double sum)
+Student::Student(vector<double> score, double sum):score_(score),sum_(sum)
 {
-	this->id = id;
-	strcpy(this->name, name);
-	strcpy(this->term, term);
-	strcpy(this->sex, sex);
-	for (int i = 1; i <= 10; i++)
-	{
-		this->score[i] = score[i];
-	}
-	this->sum = sum;
+	
+}
+Student::Student(long long id, string name, string term, string sex, vector<double> score, double sum):
+	id_(id),name_(name),term_(term),sex_(sex),score_(score),sum_(sum)
+{
+	
 }
 Student::~Student()
 {
 
 }
-Student::Student()
+long long Student::Get_Id() const
 {
-
+	return id_;
+}
+vector<double> Student::Get_Score() const
+{
+	return score_;
+}
+double Student::Get_Sum() const
+{
+	return sum_;
 }

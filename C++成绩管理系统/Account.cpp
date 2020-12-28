@@ -1,14 +1,13 @@
-#include "Account.h"
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
+#include<string>
 #include<Windows.h>
+#include "Account.h"
 using namespace std;
-Account::Account(long long account, char password[20],char name[20],char identify[10])
+Account::Account(long long account, string password, string name, string identify) :
+	account_(account),password_(password),name_(name),identify_(identify)
 {
-	this->account = account;
-	strcpy(this->password, password);
-	strcpy(this->name, name);
-	strcpy(this->identify, identify);
+	
 }
 Account::Account()
 {

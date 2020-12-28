@@ -10,9 +10,9 @@ using namespace std;
 int main()
 {
 	AccountDeal Act;
-	StudentDeal S;
-	S.creat_file();
-	Act.creat_file_m();
+	//StudentDeal S;
+	//S.creat_file();
+	//Act.creat_file_m();
 	//S.welcome();
 	Act.menu_initial();
 	return 0;

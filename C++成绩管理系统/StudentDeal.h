@@ -1,4 +1,5 @@
 #pragma once
+#include<list>
 #include"Draw.h"
 #include"Student.h"
 class Draw;
@@ -8,7 +9,7 @@ class StudentDeal
 public:
 	friend class AccountDeal;
 	void creat_file();
-	Student* creat_list();
+	void creat_list();
 	void add_student();
 	void print_stu_all();
 	void update_stu_id_name();
@@ -21,5 +22,7 @@ public:
 	void sort_stu_sum();
 	void screen();
 	void welcome();
+private:
+	list<Student> list_;
 };
 
