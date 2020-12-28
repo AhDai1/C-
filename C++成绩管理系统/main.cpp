@@ -11,7 +11,7 @@ int main()
 {
 	AccountDeal Act;
 	StudentDeal S;
-	S.welcome();
+	//S.welcome();
 	Act.menu_initial();
 	return 0;
 }

@@ -50,8 +50,8 @@ void AccountDeal::register_m()
 		system("pause");
 		menu_initial();
 	}
-	ofstream ofs("messages.txt", ios::out);
-	ofs << t.account_ << " " << t.password_ << " " << t.name_ << " " << t.identify_;
+	ofstream ofs("messages.txt", ios::app);
+	ofs << t.account_ << " " << t.password_ << " " << t.name_ << " " << t.identify_ << endl;
 	ofs.close();
 	system("cls");
 	cout << "\n\n\n\n\n\n\n\n\t\t\t\t\t\t账号创建成功\n\t\t\t\t\t\t\t";
@@ -59,16 +59,14 @@ void AccountDeal::register_m()
 }
 void AccountDeal::creat_list_message()
 {
-	FILE *fp = NULL;
 	list_.clear();
 	ifstream ifs("messages.txt",ios::in);
-	while (!ifs.eof())
-	{
-		long long account;
-		string password;
-		string name;
-		string identify;
-		ifs >> account >> password >> name >> identify;
+	long long account;
+	string password;
+	string name;
+	string identify;
+	while (ifs >> account >> password >> name >> identify)
+	{	
 		Account t(account, password, name, identify);
 		list_.push_back(t);
 	}
