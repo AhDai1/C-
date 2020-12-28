@@ -10,28 +10,9 @@ using namespace std;
 int flagg = 0;
 StudentDeal s;
 AccountDeal::AccountDeal(){}
-void AccountDeal::creat_file_m()
-{
-	system("cls");
-	FILE *fp = NULL;
-	if ((fp = fopen("messages.txt", "r")) == NULL)
-	{
-		if ((fp = fopen("messages.txt", "w")) == NULL)
-		{
-			cout << "File opens error!\n";
-			exit(0);
-		}
-	}
-	if (fclose(fp))
-	{
-		cout << "file close error!\n";
-		exit(0);
-	}
-}
 void AccountDeal::register_m()
 {
 	Draw draw;
-	FILE *fp = NULL;
 	long long account;//账户账号
 	string password;//账户密码
 	string name;//账户户名
@@ -116,20 +97,17 @@ void AccountDeal::login()
 		if (ch == '\r')
 			break;
 		c += ch;
-		if (ch == '\b')
-		{
+		if (ch == '\b'){
 			i--;
 			putchar('\b');//退格键
 			putchar(' ');
 			putchar('\b');
 		}
-		else
-		{
+		else{
 			putchar('*');
 			i++;
 		}
-		if (i == -1)
-		{
+		if (i == -1){
 			i = 0;
 		}
 		if (i == 0)//保证光标在最开始位置不变
@@ -140,29 +118,24 @@ void AccountDeal::login()
 	list<Account>::iterator iter;
 	for (iter = list_.begin(); iter != list_.end();iter++)
 	{
-		if (iter->account_ == account)
-		{
-			if (iter->password_ == c)
-			{
+		if (iter->account_ == account){
+			if (iter->password_ == c){
 				flag = 1;
 				system("cls");
 				cout << "\n\n\n\n\n\n\n\n\t\t\t\t\t\t登录成功\n\t\t\t\t\t\t";
 				system("pause");
-				if (iter->identify_==a)
-				{
+				if (iter->identify_==a){
 					flagg = 1;
 					menu_teacher();
 				}
-				else if (iter->identify_==b)
-				{
+				else if (iter->identify_==b){
 					flagg = 0;
 					menu_student();
 				}
 			}
 		}
 	}
-	if (flag == 0)
-	{
+	if (flag == 0){
 		system("cls");
 		cout << "\n\n\n\n\n\t\t\t\t账号或密码错误\n\t\t\t\t\t";
 
@@ -208,12 +181,10 @@ char AccountDeal::menu_initial_selete()
 	cin >> n;
 	while (1)
 	{
-		if (n >= '1' && n <= '3')
-		{
+		if (n >= '1' && n <= '3'){
 			return n;
 		}
-		else
-		{
+		else{
 			cout << "\n\n\n\n\n\t\t\t\t\t输入错误，请重新输入\n";
 			system("pause");
 			return 0;
@@ -249,12 +220,10 @@ char AccountDeal::menu_student_selete()
 	cin >> n;
 	while (1)
 	{
-		if (n >= '1' && n <= '4')
-		{
+		if (n >= '1' && n <= '4'){
 			return n;
 		}
-		else
-		{
+		else{
 			cout << "\n\n\n\n\n\t\t\t\t\t输入错误，请重新输入" << endl;
 			system("pause");
 			return 0;
@@ -298,12 +267,10 @@ char AccountDeal::menu_teacher_selete()
 	cin >> n;
 	while (1)
 	{
-		if (n >= '1' && n <= '8')
-		{
+		if (n >= '1' && n <= '8'){
 			return n;
 		}
-		else
-		{
+		else{
 			cout << "\n\n\n\n\n\t\t\t\t\t输入错误，请重新输入\n\t\t\t\t";
 			system("pause");
 			return 0;

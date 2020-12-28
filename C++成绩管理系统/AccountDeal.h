@@ -7,7 +7,6 @@ class AccountDeal
 {
 public:
 	AccountDeal();
-	void creat_file_m();//创建账户信息文件 
 	void register_m();
 	void creat_list_message();
 	void login();

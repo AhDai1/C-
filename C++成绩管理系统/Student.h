@@ -22,6 +22,5 @@ private:
 	string sex_;//性别
 	vector<double> score_;//课程分数
 	double sum_;//总分
-	//Student *next;
 };
 

@@ -10,28 +10,8 @@
 #include "StudentDeal.h"
 using namespace std;
 int sub;
-//char subjects[10][10] = { "语文","数学","英语","物理","生物","化学","历史","政治","地理" };
 vector<string> subjects = { "语文","数学","英语","物理","生物","化学","历史","政治","地理" };
 vector<int> courses(10,-1);//储存选择课程的序号 
-void StudentDeal::creat_file()//创建学生成绩信息文件 
-{
-	system("cls");
-	FILE *fp = NULL;
-	if ((fp = fopen("student.txt", "rb")) == NULL)
-	{
-		if ((fp = fopen("student.txt", "wb")) == NULL)
-		{
-			printf("File opens error!\n");
-			exit(0);
-		}
-	}
-
-	if (fclose(fp))
-	{
-		printf("file close error!\n");
-		exit(0);
-	}
-}
 void StudentDeal::creat_list()//创建链表 
 {
 	int n = 0;
@@ -57,6 +37,7 @@ void StudentDeal::creat_list()//创建链表
 }
 void StudentDeal::add_student()//录入学生信息 
 {
+
 	Draw draw;
 	long long id;//学号
 	string name;//学生姓名
@@ -74,8 +55,7 @@ void StudentDeal::add_student()//录入学生信息
 	system("cls");
 	cout << "\n\n\n\n\n\t\t\t\t\t请输入该学期的课程数:";
 	cin >> sub;
-	if (sub < 1 || sub>9)
-	{
+	if (sub < 1 || sub>9){
 		system("cls");
 		cout << "\n\n\n\n\n\n\t\t\t\t\t输入错误请重新输入\n\t\t\t\t\t";
 		system("pause");
@@ -91,8 +71,7 @@ void StudentDeal::add_student()//录入学生信息
 	{
 		cin >> courses[i];
 		cout << "\t\t\t";
-		if (courses[i] < 1 || courses[i]>9 || courses[i] == courses[i - 1])
-		{
+		if (courses[i] < 1 || courses[i]>9 || courses[i] == courses[i - 1]){
 			system("cls");
 			cout << "\n\n\n\n\n\n\n\t\t\t\t输入错误，请重新输入:";
 			system("pause");
@@ -117,12 +96,8 @@ void StudentDeal::add_student()//录入学生信息
 		int r = 1;
 		system("cls");
 		cout << "\n\n\n\n\n";
-		/*for (int i = 1; i <= 9; i++)
-		{
-			score[i] = -1;
-		}*/
-
-		draw.gotoxy(45, 5); cout << "请输入课程的分数:";
+		draw.gotoxy(45, 5); 
+		cout << "请输入课程的分数:";
 		draw.DrawList(45, 6, 2, sub, 6, 1);
 		int q = 7;
 		for (int j = 1; j <= sub; j++)
@@ -136,8 +111,6 @@ void StudentDeal::add_student()//录入学生信息
 			r++;
 			q += 2;//控制光标下一行
 		}
-		//Student t(id, name, term, sex, score, sum);
-		//fwrite(&t, sizeof(t), 1, fp);//结构体写入文件
 		ofstream ofs("student.txt", ios::app);
 		ofs << id << " " << name << " " << term << " " << sex << " ";
 		for (int i = 0; i < 10; i++) {
@@ -151,21 +124,16 @@ void StudentDeal::print_stu_all()//打印所有学生成绩
 {
 	system("cls");
 	int i, j;
-
 	creat_list();
-	if (list_.empty())
-	{
+	if (list_.empty()){
 		cout << "\n\n\n\n\n\n\n\t\t\t\t没有学生信息\n";
 		system("pause");
 		return;
 	}
-	if (!list_.empty())
-	{
+	if (!list_.empty()){
 		system("cls");
 		cout << "\n\n\n\n\n\n\n学号\t\t姓名\t学期\t性别";
-		for (j = 1; j <= 9; j++)
-		{
-			//		count = courses[k++] - 1;
+		for (j = 1; j <= 9; j++){
 			cout << "\t" << subjects[j - 1];
 		}
 		cout << "\t总分" << endl;
@@ -180,18 +148,14 @@ void StudentDeal::print_stu_all()//打印所有学生成绩
 		else
 			cout << iter->id_ << "\t\t";
 		cout << iter->name_ << "\t" << iter->term_ << "\t" << iter->sex_;
-		for (i = 1; i <= 9; i++)
-		{
-			if (iter->score_[i] >= 0)
-			{
+		for (i = 1; i <= 9; i++){
+			if (iter->score_[i] >= 0)	{
 				cout << setprecision(0)<< "\t" << iter->score_[i];
 			}
-			else if (iter->score_[i] < 0)
-			{
+			else if (iter->score_[i] < 0){
 				cout << "\t";
 			}
 		}
-		//cout << setprecision(2)<< "\t" << ptr->sum << endl;
 		cout << setprecision(0)<< "\t" << iter->sum_ << endl;
 	}
 	system("pause");
@@ -201,7 +165,6 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 	Draw draw;
 	system("cls");
 	int flag2 = 0;
-
 	int sub_id;//要修改的课程序号 
 	long long id;
 	string name;
@@ -216,15 +179,13 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 	draw.gotoxy(47, 7); cout << "2、按姓名查找";
 	draw.gotoxy(47, 9);
 	cin >> flag;
-	if (flag != 1 && flag != 2)
-	{
+	if (flag != 1 && flag != 2){
 		system("cls");
 		cout << "\n\n\n\n\n\t\t\t\t\t\t输入错误请重新输入\n\t\t\t\t\t";
 		system("pause");
 		return;
 	}
-	if (flag == 1)
-	{
+	if (flag == 1){
 		system("cls");
 		draw.DrawList(45, 4, 2, 1, 9, 1);
 		draw.gotoxy(50, 5); cout << "请输入学号";
@@ -242,10 +203,8 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 	list<Student>::iterator iter;
 	for(iter=list_.begin();iter!=list_.end();iter++)
 	{
-		if (flag == 1)
-		{
-			if (iter->id_ == id)
-			{
+		if (flag == 1){
+			if (iter->id_ == id)	{
 				flag1 = 1;
 				system("cls");
 				draw.DrawList(10, 2, 9, 1, 5, 1);
@@ -254,8 +213,7 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 				draw.DrawList(38, 5, 2, 2, 9, 1);
 				draw.gotoxy(39, 6); cout << "请输入课程前的序号:";
 				draw.gotoxy(60, 6); cin >> sub_id;
-				if (sub_id < 1 || sub_id>9)
-				{
+				if (sub_id < 1 || sub_id>9){
 					system("cls");
 					cout << "\n\n\n\n\n\n\t\t\t\t\t输入错误请重新输入\n\t\t\t\t";
 					system("pause");
@@ -263,25 +221,21 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 				}
 				draw.gotoxy(39, 8); cout << "输入修改后的分数:";
 				draw.gotoxy(60, 8); cin >> score;
-				if (iter->score_[sub_id] >= 0)
-				{
+				if (iter->score_[sub_id] >= 0){
 					temp = score - iter->score_[sub_id];//记录修改后与修改前分数的差值 
 					iter->score_[sub_id] = score;
 					iter->sum_ += temp;
 					break;
 				}
-				else
-				{
+				else{
 					iter->score_[sub_id] = score;
 					iter->sum_ += score;
 					break;
 				}
 			}
 		}
-		else if (flag == 2)
-		{
-			if (name==iter->name_)
-			{
+		else if (flag == 2){
+			if (name==iter->name_){
 				flag1 = 1;
 				system("cls");
 				draw.DrawList(10, 2, 9, 1, 5, 1);
@@ -290,8 +244,7 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 				draw.DrawList(38, 5, 2, 2, 9, 1);
 				draw.gotoxy(39, 6); cout << "请输入课程前的序号:";
 				draw.gotoxy(60, 6); cin >> sub_id;
-				if (sub_id < 1 || sub_id>9)
-				{
+				if (sub_id < 1 || sub_id>9){
 					system("cls");
 					cout << "\n\n\n\n\n\n\t\t\t\t\t输入错误请重新输入\n\t\t\t\t";
 					system("pause");
@@ -299,15 +252,13 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 				}
 				draw.gotoxy(39, 8); cout << "输入修改后的分数:";
 				draw.gotoxy(60, 8); cin >> score;
-				if (iter->score_[sub_id] >= 0)
-				{
+				if (iter->score_[sub_id] >= 0){
 					temp = score - iter->score_[sub_id];//记录修改后与修改前分数的差值 
 					iter->score_[sub_id] = score;
 					iter->sum_ += temp;
 					break;
 				}
-				else
-				{
+				else{
 					iter->score_[sub_id] = score;
 					iter->sum_ += score;
 					break;
@@ -315,15 +266,13 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 			}
 		}
 	}
-	if (flag1 == 0)
-	{
+	if (flag1 == 0){
 		cout << "\n\n\n\n\n\n\t\t\t\t\t没有学生信息\n\t\t\t\t\t";
 		system("pause");
 		return;
 	}
 	ofstream ofs("student.txt", ios::trunc | ios::out);
-	for (iter = list_.begin(); iter != list_.end(); iter++)
-	{
+	for (iter = list_.begin(); iter != list_.end(); iter++){
 		ofs << iter->id_ << " " << iter->name_ << " " << iter->term_ << " " << iter->sex_ << " ";
 		for (int i = 0; i < 10; i++) {
 			ofs << iter->score_[i] << " ";
@@ -349,45 +298,36 @@ void StudentDeal::serch_stu()//查找某一个同学成绩
 	draw.gotoxy(47, 7); cout << "2、按姓名查找";
 	draw.gotoxy(47, 9);
 	cin >> flag;
-	if (flag != 1 && flag != 2)
-	{
+	if (flag != 1 && flag != 2){
 		system("cls");
 		cout << "\n\n\n\n\n\t\t\t\t\t\t输入错误请重新输入\n\t\t\t\t\t";
 		system("pause");
 		return;
 	}
-	else if (flag == 1 || flag == 2)
-	{
-		if (flag == 1)
-		{
+	else if (flag == 1 || flag == 2){
+		if (flag == 1){
 			system("cls");
 			draw.DrawList(45, 4, 2, 1, 9, 1);
 			draw.gotoxy(50, 5); cout << "请输入学号";
 			draw.gotoxy(67, 5); cin >> id;
 		}
-		else if (flag == 2)
-		{
+		else if (flag == 2){
 			system("cls");
 			draw.DrawList(45, 4, 2, 1, 9, 1);
 			draw.gotoxy(50, 5); cout << "请输入姓名";
 			draw.gotoxy(67, 5); cin >> name;
 		}
 		list<Student>::iterator iter;
-		for (iter = list_.begin(); iter != list_.end(); iter++)
-		{
-			if (flag == 1)
-			{
-				if (iter->id_ == id)
-				{
+		for (iter = list_.begin(); iter != list_.end(); iter++){
+			if (flag == 1){
+				if (iter->id_ == id){
 					flag1 = 1;
 					t = &*iter;
 					int k = 1;
 					system("cls");
 					cout << "\n\n\n\n\n\n\n学号\t\t姓名\t学期\t性别";
-					for (int i = 1; i <= 9; i++)
-					{
-						if (iter->score_[i] >= 0)
-						{
+					for (int i = 1; i <= 9; i++){
+						if (iter->score_[i] >= 0){
 							cout << "\t" << subjects[i - 1];
 						}
 					}
@@ -395,19 +335,15 @@ void StudentDeal::serch_stu()//查找某一个同学成绩
 					break;
 				}
 			}
-			else if (flag == 2)
-			{
-				if (iter->name_==name)
-				{
+			else if (flag == 2){
+				if (iter->name_==name){
 					flag1 = 1;
 					t = &*iter;
 					int k = 1;
 					system("cls");
 					cout << "\n\n\n\n\n\n\n学号\t\t姓名\t学期\t性别";
-					for (int i = 1; i <= 9; i++)
-					{
-						if (iter->score_[i] >= 0)
-						{
+					for (int i = 1; i <= 9; i++){
+						if (iter->score_[i] >= 0){
 							cout << "\t" << subjects[i - 1];
 						}
 					}
@@ -416,24 +352,20 @@ void StudentDeal::serch_stu()//查找某一个同学成绩
 				}
 			}
 		}
-		if (flag1 == 0)
-		{
+		if (flag1 == 0){
 			system("cls");
 			cout << "\n\n\n\n\n\n\n\t\t\t\t\t\t无该学生信息\n";
 			system("pause");
 			return;
 		}
-		else
-		{
+		else{
 			if (iter->id_ >= 1e7)
 				cout << iter->id_ << "\t";
 			else
 				cout << iter->id_ << "\t\t";
 			cout << t->name_ << "\t" << t->term_ << "\t" << t->sex_;
-			for (int i = 1; i <= 9; i++)
-			{
-				if (t->score_[i] >= 0)
-				{
+			for (int i = 1; i <= 9; i++){
+				if (t->score_[i] >= 0){
 					cout << setprecision(0)<<"\t" << t->score_[i];
 				}
 			}
@@ -460,8 +392,7 @@ void StudentDeal::delete_stu()//删除同学信息
 	draw.gotoxy(47, 7); cout << "2、删除全部信息";
 	draw.gotoxy(47, 9);
 	cin >> flag2;
-	if (flag2 == 2)
-	{
+	if (flag2 == 2){
 		ofstream ofs("student.txt", ios::trunc | ios::out);
 		ofs.close();
 		system("cls");
@@ -469,23 +400,20 @@ void StudentDeal::delete_stu()//删除同学信息
 		system("pause");
 		return;
 	}
-	else if (flag2 == 1)
-	{
+	else if (flag2 == 1){
 		system("cls");
 		draw.DrawList(45, 4, 1, 2, 9, 1);
 		draw.gotoxy(47, 5); cout << "1、按学号查找";
 		draw.gotoxy(47, 7); cout << "2、按姓名查找";
 		draw.gotoxy(47, 9);
 		cin >> flag;
-		if (flag == 1)
-		{
+		if (flag == 1){
 			system("cls");
 			draw.DrawList(45, 4, 2, 1, 9, 1);
 			draw.gotoxy(50, 5); cout << "请输入学号";
 			draw.gotoxy(67, 5); cin >> id;
 		}
-		else if (flag == 2)
-		{
+		else if (flag == 2){
 			system("cls");
 			draw.DrawList(45, 4, 2, 1, 9, 1);
 			draw.gotoxy(50, 5); cout << "请输入姓名";
@@ -495,19 +423,15 @@ void StudentDeal::delete_stu()//删除同学信息
 		iter = list_.begin();
 		while(iter!=list_.end())
 		{
-			if (flag == 1)
-			{
-				if (iter->id_ == id)//找到节点 
-				{
+			if (flag == 1){
+				if (iter->id_ == id){//找到节点 
 					iter = list_.erase(iter);
 					flag1 = 1;
 					break;
 				}
 			}
-			else if (flag == 2)
-			{
-				if (iter->name_==name)
-				{
+			else if (flag == 2){
+				if (iter->name_==name){
 					iter = list_.erase(iter);
 					flag1 = 1;
 					break;
@@ -516,8 +440,7 @@ void StudentDeal::delete_stu()//删除同学信息
 			iter++;
 		}
 		ofstream ofs("student.txt", ios::trunc | ios::out);
-		for (iter = list_.begin(); iter != list_.end(); iter++)
-		{
+		for (iter = list_.begin(); iter != list_.end(); iter++){
 			ofs << iter->id_ << " " << iter->name_ << " " << iter->term_ << " " << iter->sex_ << " ";
 			for (int i = 0; i < 10; i++) {
 				ofs << iter->score_[i] << " ";
@@ -548,14 +471,11 @@ char StudentDeal::sort_selete()
 	int q = 0;
 	int k = 1;
 	cin >> selete;
-	for (;;)
-	{
-		if (selete >= '1' && selete <= '3')
-		{
+	for (;;){
+		if (selete >= '1' && selete <= '3'){
 			return selete;
 		}
-		else
-		{
+		else{
 			cout << "\n\n\n\n\n\n\n\n\t\t\t\t\t输入错误，请重新输入\n\t\t\t\t\t";
 			system("pause");
 			return 0;
@@ -591,8 +511,7 @@ void StudentDeal::sort_stu_id()//冒泡排序
 	});
 	ofstream ofs("student.txt", ios::trunc | ios::out);
 	list<Student>::iterator iter;
-	for (iter = list_.begin(); iter != list_.end(); iter++)
-	{
+	for (iter = list_.begin(); iter != list_.end(); iter++){
 		ofs << iter->id_ << " " << iter->name_ << " " << iter->term_ << " " << iter->sex_ << " ";
 		for (int i = 0; i < 10; i++) {
 			ofs << iter->score_[i] << " ";
@@ -618,8 +537,7 @@ void StudentDeal::sort_stu_sub()
 	while (1)
 	{
 		cin >> count;
-		if (count < 1 || count>9)
-		{
+		if (count < 1 || count>9){
 			cout << "\n\n\n\n\n\n\n\t\t\t\t输入错误，请重新输入\n\t\t\t\t\t\t";
 			system("pause");
 			return;
@@ -633,8 +551,7 @@ void StudentDeal::sort_stu_sub()
 	});
 	ofstream ofs("student.txt", ios::trunc | ios::out);
 	list<Student>::iterator iter;
-	for (iter = list_.begin(); iter != list_.end(); iter++)
-	{
+	for (iter = list_.begin(); iter != list_.end(); iter++){
 		ofs << iter->id_ << " " << iter->name_ << " " << iter->term_ << " " << iter->sex_ << " ";
 		for (int i = 0; i < 10; i++) {
 			ofs << iter->score_[i] << " ";
@@ -656,8 +573,7 @@ void StudentDeal::sort_stu_sum()
 	});
 	ofstream ofs("student.txt", ios::trunc | ios::out);
 	list<Student>::iterator iter;
-	for (iter = list_.begin(); iter != list_.end(); iter++)
-	{
+	for (iter = list_.begin(); iter != list_.end(); iter++){
 		ofs << iter->id_ << " " << iter->name_ << " " << iter->term_ << " " << iter->sex_ << " ";
 		for (int i = 0; i < 10; i++) {
 			ofs << iter->score_[i] << " ";
@@ -678,8 +594,7 @@ void StudentDeal::screen()
 	cout << "\t\t\t请输入筛选的课程序号:";
 	int sub_id;
 	cin >> sub_id;
-	if (sub_id < 1 || sub_id>9)
-	{
+	if (sub_id < 1 || sub_id>9){
 		system("cls");
 		cout << "\n\n\n\n\t\t\t输入错误请重新输入\n\t\t\t\t";
 		system("pause");
@@ -699,10 +614,8 @@ void StudentDeal::screen()
 	cout << "\t总分" << endl;
 	int flag = 0;
 	list<Student>::iterator iter;
-	for (iter = list_.begin(); iter != list_.end(); iter++)
-	{
-		if (iter->score_[sub_id] >= score_low && iter->score_[sub_id] <= score_high)
-		{
+	for (iter = list_.begin(); iter != list_.end(); iter++){
+		if (iter->score_[sub_id] >= score_low && iter->score_[sub_id] <= score_high){
 			nums++;
 			flag = 1;
 			if (iter->id_ >= 1e7)
@@ -720,11 +633,9 @@ void StudentDeal::screen()
 			cout << setprecision(0) << "\t" << iter->sum_ << endl;
 		}
 	}
-	//printf("\t\t\t\t%s成绩%.2lf-%.2lf分数段一共有%d人\n", subjects[sub_id - 1], score_low, score_high, nums);
 	cout << "\t\t\t\t" << subjects[sub_id - 1] << "成绩" << setprecision(2) << score_low << "-" << setprecision(2) << score_high <<
 		"分数段一共有" << nums << "人" << endl;
-	if (flag == 0)
-	{
+	if (flag == 0){
 		system("cls");
 		cout << "\n\n\n\n\t\t\t\t没有符合条件的数据\n";
 		system("pause");

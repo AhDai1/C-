@@ -8,7 +8,6 @@ class StudentDeal
 {
 public:
 	friend class AccountDeal;
-	void creat_file();
 	void creat_list();
 	void add_student();
 	void print_stu_all();
