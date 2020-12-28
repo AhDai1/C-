@@ -11,43 +11,7 @@ void Draw::gotoxy(int x, int y)
 	xy.Y = y;
 	SetConsoleCursorPosition(hout, xy);
 }
-void Draw::DrawRec(int X, int Y, int w, int h)
-{
-	int i, j;
-	//到达x,y
-	gotoxy(X, Y);
-	//上边--------------------第一排
-	printf("┏ ");
-	for (i = 0; i < w; i++)
-	{
-		printf("━ ");
-	}
-	printf("┓ ");
-	//左边
 
-	for (i = 0; i < h; i++)
-	{
-		gotoxy(X, Y + 1 + i);
-		printf("┃ ");
-	}
-	//右边
-
-	for (i = 0; i < h; i++)
-	{
-		gotoxy(X + 2 + w * 2, Y + 1 + i);
-		printf("┃ ");
-	}
-	//下边
-	gotoxy(X, Y + 1 + h);
-	//上边--------------------
-	printf("┗ ");
-	for (i = 0; i < w; i++)
-	{
-		printf("━ ");
-	}
-	printf("┛ ");
-
-}
 void Draw::DrawList(int x, int y, int column, int line, int width, int hight)
 {
 	/*绘制表格 参数依次为 左顶点坐标 列数 行数  行宽 行高*/

@@ -13,7 +13,7 @@ int main()
 	StudentDeal S;
 	S.creat_file();
 	Act.creat_file_m();
-	S.welcome();
+	//S.welcome();
 	Act.menu_initial();
 	return 0;
 }

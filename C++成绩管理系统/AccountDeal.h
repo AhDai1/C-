@@ -1,7 +1,8 @@
 #pragma once
 #include "Account.h"
 #include"Draw.h"
-class AccountDeal:public Draw
+class Draw;
+class AccountDeal
 {
 public:
 

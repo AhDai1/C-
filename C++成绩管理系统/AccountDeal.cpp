@@ -27,6 +27,7 @@ void AccountDeal::creat_file_m()
 }
 void AccountDeal::register_m()
 {
+	Draw draw;
 	FILE *fp = NULL;
 	Account *ptr = NULL;
 	Account *h;
@@ -45,9 +46,9 @@ void AccountDeal::register_m()
 		}
 	}
 	system("cls");
-	DrawList(38, 4, 2, 4, 9, 1);
-	gotoxy(47, 5); cout << "账号";
-	gotoxy(60, 5); cin >> account;//写：判断文件中是否存在账号
+	draw.DrawList(38, 4, 2, 4, 9, 1);
+	draw.gotoxy(47, 5); cout << "账号";
+	draw.gotoxy(60, 5); cin >> account;//写：判断文件中是否存在账号
 	h = creat_list_message();
 	ptr = h;
 	while (ptr->next != NULL)
@@ -61,12 +62,12 @@ void AccountDeal::register_m()
 			return;
 		}
 	}
-	gotoxy(47, 7); cout << "密码";
-	gotoxy(60, 7); cin >> password;
-	gotoxy(47, 9); cout << "姓名";
-	gotoxy(60, 9); cin >> name;
-	gotoxy(42, 11); cout << "身份(老师/学生)";
-	gotoxy(60, 11); cin >> identify;
+	draw.gotoxy(47, 7); cout << "密码";
+	draw.gotoxy(60, 7); cin >> password;
+	draw.gotoxy(47, 9); cout << "姓名";
+	draw.gotoxy(60, 9); cin >> name;
+	draw.gotoxy(42, 11); cout << "身份(老师/学生)";
+	draw.gotoxy(60, 11); cin >> identify;
 	Account t(account, password, name, identify);
 	if (strcmp(identify, a) != 0 && strcmp(identify, b) != 0)
 	{
@@ -118,6 +119,7 @@ Account* AccountDeal::creat_list_message()
 }
 void AccountDeal::login()
 {
+	Draw draw;
 	Account *ptr = NULL;
 	Account *h;
 	int flag = 0;//判断是否登陆成功
@@ -128,11 +130,11 @@ void AccountDeal::login()
 	char b[10] = "学生";
 	char c[20];//记录密码
 	system("cls");
-	DrawList(38, 4, 2, 2, 9, 1);
-	gotoxy(47, 5); cout << "账号";
-	gotoxy(60, 5); cin >> account;
-	gotoxy(47, 7); cout << "密码";
-	gotoxy(60, 7);
+	draw.DrawList(38, 4, 2, 2, 9, 1);
+	draw.gotoxy(47, 5); cout << "账号";
+	draw.gotoxy(60, 5); cin >> account;
+	draw.gotoxy(47, 7); cout << "密码";
+	draw.gotoxy(60, 7);
 	int i = 0;
 	while (1)//密码星号处理
 	{
@@ -156,7 +158,7 @@ void AccountDeal::login()
 			i = 0;
 		}
 		if (i == 0)//保证光标在最开始位置不变
-			gotoxy(60, 7);
+			draw.gotoxy(60, 7);
 
 	}
 	c[i] = '\0';
@@ -209,22 +211,24 @@ void AccountDeal::menu_initial()
 }
 void AccountDeal::end()
 {
+	Draw draw;
 	system("cls");
-	gotoxy(52, 13);
+	draw.gotoxy(52, 13);
 	cout << "谢谢使用\n";
-	gotoxy(85, 27);
+	draw.gotoxy(85, 27);
 	cout << "1905-陈汶君";
 	Sleep(3000);
 	exit(0);
 }
 char AccountDeal::menu_initial_selete()
 {
+	Draw draw;
 	system("cls");
-	DrawList(45, 4, 1, 4, 11, 1);
-	gotoxy(47, 5); cout << "1、登录";
-	gotoxy(47, 7); cout << "2、注册";
-	gotoxy(47, 9); cout << "3、结束运行";
-	gotoxy(47, 11); cout << "输入左边数字选择功能:";
+	draw.DrawList(45, 4, 1, 4, 11, 1);
+	draw.gotoxy(47, 5); cout << "1、登录";
+	draw.gotoxy(47, 7); cout << "2、注册";
+	draw.gotoxy(47, 9); cout << "3、结束运行";
+	draw.gotoxy(47, 11); cout << "输入左边数字选择功能:";
 	char n;
 	cin >> n;
 	while (1)
@@ -258,13 +262,14 @@ void AccountDeal::menu_student()
 }
 char AccountDeal::menu_student_selete()
 {
+	Draw draw;
 	system("cls");
-	DrawList(45, 4, 1, 5, 11, 1);
-	gotoxy(47, 5); cout << "1、打印学生信息";
-	gotoxy(47, 7); cout << "2、查询学生信息";
-	gotoxy(47, 9); cout << "3、对学生成绩进行排序";
-	gotoxy(47, 11); cout << "4、结束运行";
-	gotoxy(47, 13); cout << "输入左边数字选择功能:";
+	draw.DrawList(45, 4, 1, 5, 11, 1);
+	draw.gotoxy(47, 5); cout << "1、打印学生信息";
+	draw.gotoxy(47, 7); cout << "2、查询学生信息";
+	draw.gotoxy(47, 9); cout << "3、对学生成绩进行排序";
+	draw.gotoxy(47, 11); cout << "4、结束运行";
+	draw.gotoxy(47, 13); cout << "输入左边数字选择功能:";
 	char n;
 	cin >> n;
 	while (1)
@@ -302,17 +307,18 @@ void AccountDeal::menu_teacher()
 }
 char AccountDeal::menu_teacher_selete()
 {
+	Draw draw;
 	system("cls");
-	DrawList(45, 4, 1, 9, 11, 1);
-	gotoxy(47, 5); cout << "1、添加学生信息";
-	gotoxy(47, 7); cout << "2、修改学生信息";
-	gotoxy(47, 9); cout << "3、打印学生信息";
-	gotoxy(47, 11); cout << "4、查询学生信息";
-	gotoxy(47, 13); cout << "5、删除学生信息";
-	gotoxy(47, 15); cout << "6、对学生成绩进行排序";
-	gotoxy(47, 17); cout << "7、筛选学生成绩";
-	gotoxy(47, 19); cout << "8、结束运行";
-	gotoxy(47, 21); cout << "输入左边数字选择功能:";
+	draw.DrawList(45, 4, 1, 9, 11, 1);
+	draw.gotoxy(47, 5); cout << "1、添加学生信息";
+	draw.gotoxy(47, 7); cout << "2、修改学生信息";
+	draw.gotoxy(47, 9); cout << "3、打印学生信息";
+	draw.gotoxy(47, 11); cout << "4、查询学生信息";
+	draw.gotoxy(47, 13); cout << "5、删除学生信息";
+	draw.gotoxy(47, 15); cout << "6、对学生成绩进行排序";
+	draw.gotoxy(47, 17); cout << "7、筛选学生成绩";
+	draw.gotoxy(47, 19); cout << "8、结束运行";
+	draw.gotoxy(47, 21); cout << "输入左边数字选择功能:";
 	char n;
 	cin >> n;
 	while (1)

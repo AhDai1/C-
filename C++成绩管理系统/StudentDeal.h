@@ -1,8 +1,9 @@
 #pragma once
 #include"Draw.h"
 #include"Student.h"
+class Draw;
 
-class StudentDeal :public Draw
+class StudentDeal
 {
 public:
 	friend class AccountDeal;

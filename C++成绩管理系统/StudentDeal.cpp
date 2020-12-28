@@ -69,6 +69,7 @@ Student* StudentDeal::creat_list()//创建链表
 }
 void StudentDeal::add_student()//录入学生信息 
 {
+	Draw draw;
 	long long id;//学号
 	char name[20];//学生姓名
 	char term[20];//学期
@@ -99,8 +100,8 @@ void StudentDeal::add_student()//录入学生信息
 		return;
 	}
 	system("cls");
-	DrawList(10, 4, 9, 1, 5, 1);
-	gotoxy(12, 5);
+	draw.DrawList(10, 4, 9, 1, 5, 1);
+	draw.gotoxy(12, 5);
 	printf("1、语文     2、数学     3、英语     4、物理     5、生物     6、化学     7、历史     8、政治     9、地理");
 	printf("\n\n\n\n\n\t\t\t请输入该学期相应课程前的序号,输入一个序号回车确认:\n");
 	printf("\t\t\t");
@@ -120,15 +121,15 @@ void StudentDeal::add_student()//录入学生信息
 	{
 		system("cls");
 		cout << "\n\n\n\n\n\t\t\t\t请输入第" << i << "位同学的学号 姓名 学期 性别:\n";
-		DrawList(45, 6, 2, 4, 6, 1);
-		gotoxy(50, 7); cout << "学号";
-		gotoxy(61, 7); cin >> id;
-		gotoxy(50, 9); cout << "姓名";
-		gotoxy(61, 9); cin >> name;
-		gotoxy(50, 11); cout << "学期";
-		gotoxy(61, 11); cin >> term;
-		gotoxy(50, 13); cout << "性别";
-		gotoxy(61, 13); cin >> sex;
+		draw.DrawList(45, 6, 2, 4, 6, 1);
+		draw.gotoxy(50, 7); cout << "学号";
+		draw.gotoxy(61, 7); cin >> id;
+		draw.gotoxy(50, 9); cout << "姓名";
+		draw.gotoxy(61, 9); cin >> name;
+		draw.gotoxy(50, 11); cout << "学期";
+		draw.gotoxy(61, 11); cin >> term;
+		draw.gotoxy(50, 13); cout << "性别";
+		draw.gotoxy(61, 13); cin >> sex;
 		int k = 1;//控制课程输出
 		int r = 1;
 		system("cls");
@@ -138,14 +139,14 @@ void StudentDeal::add_student()//录入学生信息
 			score[i] = -1;
 		}
 
-		gotoxy(45, 5); cout << "请输入课程的分数:";
-		DrawList(45, 6, 2, sub, 6, 1);
+		draw.gotoxy(45, 5); cout << "请输入课程的分数:";
+		draw.DrawList(45, 6, 2, sub, 6, 1);
 		int q = 7;
 		for (int j = 1; j <= sub; j++)
 		{
-			gotoxy(50, q);
+			draw.gotoxy(50, q);
 			cout << subjects[courses[k++] - 1];
-			gotoxy(61, q);
+			draw.gotoxy(61, q);
 			cin >> score[courses[r]];//1、语文，2、数学，3、英语 ,4、物理，5、生物，6、化学，7、历史，8、政治，9、地理 
 			sum1 += score[courses[r]];
 			sum = sum1;
@@ -216,6 +217,7 @@ void StudentDeal::print_stu_all()//打印所有学生成绩
 }
 void StudentDeal::update_stu_id_name()//更新某一个同学成绩 
 {
+	Draw draw;
 	system("cls");
 	int flag2 = 0;
 
@@ -231,10 +233,10 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 	Student *h;
 	h = creat_list();
 	system("cls");
-	DrawList(45, 4, 1, 2, 9, 1);
-	gotoxy(47, 5); cout << "1、按学号查找";
-	gotoxy(47, 7); cout << "2、按姓名查找";
-	gotoxy(47, 9);
+	draw.DrawList(45, 4, 1, 2, 9, 1);
+	draw.gotoxy(47, 5); cout << "1、按学号查找";
+	draw.gotoxy(47, 7); cout << "2、按姓名查找";
+	draw.gotoxy(47, 9);
 	cin >> flag;
 	if (flag != 1 && flag != 2)
 	{
@@ -246,16 +248,16 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 	if (flag == 1)
 	{
 		system("cls");
-		DrawList(45, 4, 2, 1, 9, 1);
-		gotoxy(50, 5); cout << "请输入学号";
-		gotoxy(67, 5); cin >> id;
+		draw.DrawList(45, 4, 2, 1, 9, 1);
+		draw.gotoxy(50, 5); cout << "请输入学号";
+		draw.gotoxy(67, 5); cin >> id;
 	}
 	else if (flag == 2)
 	{
 		system("cls");
-		DrawList(45, 4, 2, 1, 9, 1);
-		gotoxy(50, 5); cout << "请输入姓名";
-		gotoxy(67, 5); cin >> name;
+		draw.DrawList(45, 4, 2, 1, 9, 1);
+		draw.gotoxy(50, 5); cout << "请输入姓名";
+		draw.gotoxy(67, 5); cin >> name;
 	}
 	system("cls");
 	double temp;
@@ -269,12 +271,12 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 			{
 				flag1 = 1;
 				system("cls");
-				DrawList(10, 2, 9, 1, 5, 1);
-				gotoxy(12, 3);
+				draw.DrawList(10, 2, 9, 1, 5, 1);
+				draw.gotoxy(12, 3);
 				printf("1、语文     2、数学     3、英语     4、物理     5、生物     6、化学     7、历史     8、政治     9、地理");
-				DrawList(38, 5, 2, 2, 9, 1);
-				gotoxy(39, 6); cout << "请输入课程前的序号:";
-				gotoxy(60, 6); cin >> sub_id;
+				draw.DrawList(38, 5, 2, 2, 9, 1);
+				draw.gotoxy(39, 6); cout << "请输入课程前的序号:";
+				draw.gotoxy(60, 6); cin >> sub_id;
 				if (sub_id < 1 || sub_id>9)
 				{
 					system("cls");
@@ -282,8 +284,8 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 					system("pause");
 					return;
 				}
-				gotoxy(39, 8); cout << "输入修改后的分数:";
-				gotoxy(60, 8); cin >> score;
+				draw.gotoxy(39, 8); cout << "输入修改后的分数:";
+				draw.gotoxy(60, 8); cin >> score;
 				if (ptr->score[sub_id] >= 0)
 				{
 					temp = score - ptr->score[sub_id];//记录修改后与修改前分数的差值 
@@ -305,12 +307,12 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 			{
 				flag1 = 1;
 				system("cls");
-				DrawList(10, 2, 9, 1, 5, 1);
-				gotoxy(12, 3);
+				draw.DrawList(10, 2, 9, 1, 5, 1);
+				draw.gotoxy(12, 3);
 				printf("1、语文     2、数学     3、英语     4、物理     5、生物     6、化学     7、历史     8、政治     9、地理");
-				DrawList(38, 5, 2, 2, 9, 1);
-				gotoxy(39, 6); cout << "请输入课程前的序号:";
-				gotoxy(60, 6); cin >> sub_id;
+				draw.DrawList(38, 5, 2, 2, 9, 1);
+				draw.gotoxy(39, 6); cout << "请输入课程前的序号:";
+				draw.gotoxy(60, 6); cin >> sub_id;
 				if (sub_id < 1 || sub_id>9)
 				{
 					system("cls");
@@ -318,8 +320,8 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 					system("pause");
 					return;
 				}
-				gotoxy(39, 8); cout << "输入修改后的分数:";
-				gotoxy(60, 8); cin >> score;
+				draw.gotoxy(39, 8); cout << "输入修改后的分数:";
+				draw.gotoxy(60, 8); cin >> score;
 				if (ptr->score[sub_id] >= 0)
 				{
 					temp = score - ptr->score[sub_id];//记录修改后与修改前分数的差值 
@@ -362,6 +364,7 @@ void StudentDeal::update_stu_id_name()//更新某一个同学成绩
 }
 void StudentDeal::serch_stu()//查找某一个同学成绩 
 {
+	Draw draw;
 	system("cls");
 	FILE *fp = NULL;
 	long long id;
@@ -374,10 +377,10 @@ void StudentDeal::serch_stu()//查找某一个同学成绩
 	ptr = h;
 	int flag1 = 0;
 	system("cls");
-	DrawList(45, 4, 1, 2, 11, 1);
-	gotoxy(47, 5); cout << "1、按学号查找";
-	gotoxy(47, 7); cout << "2、按姓名查找";
-	gotoxy(47, 9);
+	draw.DrawList(45, 4, 1, 2, 11, 1);
+	draw.gotoxy(47, 5); cout << "1、按学号查找";
+	draw.gotoxy(47, 7); cout << "2、按姓名查找";
+	draw.gotoxy(47, 9);
 	cin >> flag;
 	if (flag != 1 && flag != 2)
 	{
@@ -391,16 +394,16 @@ void StudentDeal::serch_stu()//查找某一个同学成绩
 		if (flag == 1)
 		{
 			system("cls");
-			DrawList(45, 4, 2, 1, 9, 1);
-			gotoxy(50, 5); cout << "请输入学号";
-			gotoxy(67, 5); cin >> id;
+			draw.DrawList(45, 4, 2, 1, 9, 1);
+			draw.gotoxy(50, 5); cout << "请输入学号";
+			draw.gotoxy(67, 5); cin >> id;
 		}
 		else if (flag == 2)
 		{
 			system("cls");
-			DrawList(45, 4, 2, 1, 9, 1);
-			gotoxy(50, 5); cout << "请输入姓名";
-			gotoxy(67, 5); cin >> name;
+			draw.DrawList(45, 4, 2, 1, 9, 1);
+			draw.gotoxy(50, 5); cout << "请输入姓名";
+			draw.gotoxy(67, 5); cin >> name;
 		}
 		ptr = h;
 		while (ptr->next != NULL)
@@ -475,6 +478,7 @@ void StudentDeal::serch_stu()//查找某一个同学成绩
 }
 void StudentDeal::delete_stu()//删除同学信息 
 {
+	Draw draw;
 	system("cls");
 	Student *ptr, *q;
 	Student t;
@@ -491,10 +495,10 @@ void StudentDeal::delete_stu()//删除同学信息
 	int flag1 = 0;
 	int flag2 = 0;
 	system("cls");
-	DrawList(45, 4, 1, 2, 11, 1);
-	gotoxy(47, 5); cout << "1、删除某位同学信息";
-	gotoxy(47, 7); cout << "2、删除全部信息";
-	gotoxy(47, 9);
+	draw.DrawList(45, 4, 1, 2, 11, 1);
+	draw.gotoxy(47, 5); cout << "1、删除某位同学信息";
+	draw.gotoxy(47, 7); cout << "2、删除全部信息";
+	draw.gotoxy(47, 9);
 	cin >> flag2;
 	if (flag2 == 2)
 	{
@@ -516,24 +520,24 @@ void StudentDeal::delete_stu()//删除同学信息
 	else if (flag2 == 1)
 	{
 		system("cls");
-		DrawList(45, 4, 1, 2, 9, 1);
-		gotoxy(47, 5); cout << "1、按学号查找";
-		gotoxy(47, 7); cout << "2、按姓名查找";
-		gotoxy(47, 9);
+		draw.DrawList(45, 4, 1, 2, 9, 1);
+		draw.gotoxy(47, 5); cout << "1、按学号查找";
+		draw.gotoxy(47, 7); cout << "2、按姓名查找";
+		draw.gotoxy(47, 9);
 		cin >> flag;
 		if (flag == 1)
 		{
 			system("cls");
-			DrawList(45, 4, 2, 1, 9, 1);
-			gotoxy(50, 5); cout << "请输入学号";
-			gotoxy(67, 5); cin >> id;
+			draw.DrawList(45, 4, 2, 1, 9, 1);
+			draw.gotoxy(50, 5); cout << "请输入学号";
+			draw.gotoxy(67, 5); cin >> id;
 		}
 		else if (flag == 2)
 		{
 			system("cls");
-			DrawList(45, 4, 2, 1, 9, 1);
-			gotoxy(50, 5); cout << "请输入姓名";
-			gotoxy(67, 5); cin >> name;
+			draw.DrawList(45, 4, 2, 1, 9, 1);
+			draw.gotoxy(50, 5); cout << "请输入姓名";
+			draw.gotoxy(67, 5); cin >> name;
 		}
 		while (ptr->next != NULL)
 		{
@@ -588,13 +592,14 @@ void StudentDeal::delete_stu()//删除同学信息
 }
 char StudentDeal::sort_selete()
 {
+	Draw draw;
 	char selete;
 	system("cls");
-	DrawList(45, 4, 1, 4, 13, 1);
-	gotoxy(46, 5); cout << "1、按学号从小到大排序";
-	gotoxy(46, 7); cout << "2、按总分从高到低排序";
-	gotoxy(46, 9); cout << "3、按课程成绩从高到底排序";
-	gotoxy(46, 11); cout << "请输入左边序号选择功能:";
+	draw.DrawList(45, 4, 1, 4, 13, 1);
+	draw.gotoxy(46, 5); cout << "1、按学号从小到大排序";
+	draw.gotoxy(46, 7); cout << "2、按总分从高到低排序";
+	draw.gotoxy(46, 9); cout << "3、按课程成绩从高到底排序";
+	draw.gotoxy(46, 11); cout << "请输入左边序号选择功能:";
 	int count_id[15] = { 1,2,3,4,5,6,7,8,9,10,11,12 };
 	int q = 0;
 	int k = 1;
@@ -806,6 +811,7 @@ void StudentDeal::sort_stu_sum()
 }
 void StudentDeal::screen()
 {
+	Draw draw;
 	int nums = 0;//记录分数段中的人数
 	FILE *fp = NULL;
 	Student *ptr;
@@ -829,11 +835,11 @@ void StudentDeal::screen()
 	}
 	double score_low, score_high;
 	system("cls");
-	DrawList(45, 4, 2, 2, 9, 1);
-	gotoxy(47, 5); cout << "1、请输入最低分";
-	gotoxy(67, 5); cin >> score_low;
-	gotoxy(47, 7); cout << "2、请输入最高分";
-	gotoxy(67, 7); cin >> score_high;
+	draw.DrawList(45, 4, 2, 2, 9, 1);
+	draw.gotoxy(47, 5); cout << "1、请输入最低分";
+	draw.gotoxy(67, 5); cin >> score_low;
+	draw.gotoxy(47, 7); cout << "2、请输入最高分";
+	draw.gotoxy(67, 7); cin >> score_high;
 	system("cls");
 	cout << "\n\n\n\n\n\n\n学号\t\t姓名\t学期\t性别";
 	for (int j = 1; j <= 9; j++)
@@ -876,7 +882,8 @@ void StudentDeal::screen()
 }
 void StudentDeal::welcome()
 {
-	gotoxy(45, 11);
+	Draw draw;
+	draw.gotoxy(45, 11);
 	printf("欢"); Sleep(400);//延时 
 	printf("迎"); Sleep(400);
 	printf("使"); Sleep(400);
